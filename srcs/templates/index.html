@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ft_otp Web Interface</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<style>
+	body {
+    background-image: url('/static/background.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+<body class="flex flex-col p-6 justify-center items-center min-h-screen">
+    
+    <div class="flex flex-col max-w-md w-full mx-auto bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-8 text-center mb-8 card fade-in">
+        <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">Generate New Key</h1>
+        </div>
+        
+        <form method="POST" action="/generate_key" class="space-y-4">
+            <input 
+                type="text" 
+                name="key_input" 
+                placeholder="Enter 64 hexadecimal characters" 
+                class="border-2 border-gray-200 rounded-xl px-4 py-3 w-full transition-all duration-300 font-mono text-sm"
+                maxlength="64"
+            >
+            <button class="btn bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl hover:from-green-600 hover:to-green-700 w-full font-semibold shadow-lg" type="submit">
+                <span class="relative z-10">Generate HOTP Key</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="flex flex-col max-w-md w-full mx-auto bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-8 text-center card fade-in" style="animation-delay: 0.2s">
+        <div class="mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">HOTP Generator</h1>
+        </div>
+        
+        {% if qrcode_exists %}
+        <div class="qr-container mb-6">
+            <img src="static/qrcode.png" alt="QR Code" class="mx-auto rounded-2xl shadow-lg w-64 h-64 border-4 border-gray-100">
+        </div>
+        {% endif %}
+        
+        {% if hotp_code %}
+        <div class="mb-6 fade-in">
+            <p class="text-sm text-gray-500 mb-2 uppercase tracking-wider font-semibold">Your One-Time Password</p>
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 otp-code">
+                <p class="text-4xl font-bold font-mono tracking-widest text-blue-600">{{ hotp_code }}</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <form method="GET" action="/generate">
+            <button class="btn bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 w-full font-semibold shadow-lg" type="submit">
+                <span class="relative z-10 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Generate HOTP & QR Code
+                </span>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
