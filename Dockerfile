@@ -10,4 +10,4 @@ COPY . .
 
 WORKDIR /app/srcs
 
-CMD ["gunicorn", "srcs.app:app", "--bind", "0.0.0.0:5000"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
