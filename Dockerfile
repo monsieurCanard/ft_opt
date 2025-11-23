@@ -8,6 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV PYTHONPATH=/app
+WORKDIR /app/srcs
 
 CMD ["gunicorn", "srcs.app:app", "--bind", "0.0.0.0:5000"]
