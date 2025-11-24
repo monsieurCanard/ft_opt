@@ -1,4 +1,8 @@
-# 🔐 ft_opt - HOTP Generator
+<div align="center">
+<img width="1460" height="337" alt="Image" src="https://github.com/user-attachments/assets/a72168c2-cdf1-4af8-89cb-20cc79eeaa05" />
+
+<h1> 🔐 ft_opt - HOTP Generator </h1>
+</div>
 
 <div align="center">
 
@@ -30,7 +34,7 @@
 
 ---
 
-## 🔍 Qu'est-ce que HOTP ?
+## Qu'est-ce que HOTP ?
 
 **HOTP** (HMAC-Based One-Time Password) est un algorithme standardisé ([RFC 4226](https://tools.ietf.org/html/rfc4226)) de génération de mots de passe à usage unique basé sur un compteur. Il utilise **HMAC-SHA1** pour créer des codes temporaires à 6 chiffres.
 
@@ -55,7 +59,7 @@
 
 ---
 
-## ✨ Features
+### ✨ Features
 
 - ✅ **CLI Mode** : Génération de clés et codes HOTP en ligne de commande
 - ✅ **Web Interface** : Interface web moderne et animée
@@ -66,7 +70,7 @@
 
 ---
 
-## 🚀 Installation
+# 🚀 Installation
 
 ### Prérequis
 
