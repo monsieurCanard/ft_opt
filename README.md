@@ -13,8 +13,6 @@
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Web Interface](#web-interface)
 
-<!-- Screenshot placeholder -->
-<!-- ![Web Interface](docs/interface-screenshot.png) -->
 
 </div>
 
@@ -65,7 +63,6 @@
 - ✅ **QR Code Generation** : Génération automatique de QR codes compatibles avec Google Authenticator
 - ✅ **Auto-increment Counter** : Compteur auto-incrémenté à chaque génération
 - ✅ **RFC 4226 Compliant** : Implémentation conforme au standard HOTP
-- ✅ **Secure Key Storage** : Stockage sécurisé des clés hexadécimales
 
 ---
 
@@ -90,8 +87,6 @@ source .venv/bin/activate  # Linux/Mac
 
 # Installer les dépendances
 pip install -r requirements.txt
-# ou manuellement :
-pip install flask qrcode[pil] pillow
 ```
 
 ---
