@@ -5,11 +5,10 @@
 </div>
 
 <div align="center">
-
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Python](https://img.shields.io/badge/python-3.8+-green.svg)
-
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
+  <img src="https://img.shields.io/badge/Status-Active-success.svg?style=for-the-badge" alt="Status">
+</p>
 **Générateur de mots de passe à usage unique basé sur HOTP (RFC 4226)**
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Web Interface](#web-interface)
