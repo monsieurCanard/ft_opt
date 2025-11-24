@@ -59,7 +59,7 @@
 
 ---
 
-### ✨ Features
+### Features
 
 - ✅ **CLI Mode** : Génération de clés et codes HOTP en ligne de commande
 - ✅ **Web Interface** : Interface web moderne et animée
@@ -70,7 +70,7 @@
 
 ---
 
-# 🚀 Installation
+## Installation
 
 ### Prérequis
 
@@ -97,7 +97,7 @@ pip install flask qrcode[pil] pillow
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### CLI Mode
 
@@ -163,7 +163,7 @@ Accédez à l'interface web : **http://localhost:5000**
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ft_opt/
@@ -184,7 +184,7 @@ ft_opt/
 
 ---
 
-## 🔬 Algorithme
+## Algorithme
 
 ### Implémentation HOTP (RFC 4226)
 
