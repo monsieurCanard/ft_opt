@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
   <img src="https://img.shields.io/badge/Status-Active-success.svg?style=for-the-badge" alt="Status">
 </p>
-**Générateur de mots de passe à usage unique basé sur HOTP (RFC 4226)**
+<h2>Générateur de mots de passe à usage unique basé sur HOTP (RFC 4226)</h2>
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Web Interface](#web-interface)
 
