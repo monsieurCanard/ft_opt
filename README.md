@@ -143,7 +143,7 @@ python3 srcs/prog.py -k ft_opt.key
 python3 srcs/app.py
 ```
 
-Accédez à l'interface web : **http://localhost:5000**
+Accédez à l'interface web : **https://code.duckiverse.com**
 
 #### Fonctionnalités
 
