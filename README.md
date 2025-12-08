@@ -1,7 +1,7 @@
 <div align="center">
 <img width="1460" height="337" alt="Image" src="https://github.com/user-attachments/assets/a72168c2-cdf1-4af8-89cb-20cc79eeaa05" />
 
-<h1> 🔐 ft_opt - HOTP Generator </h1>
+<h1> 🔐 ft_opt - TOTP Generator </h1>
 </div>
 
 <div align="center">
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
   <img src="https://img.shields.io/badge/Status-Active-success.svg?style=for-the-badge" alt="Status">
 </p>
-<h2>Générateur de mots de passe à usage unique basé sur HOTP (RFC 4226)</h2>
+<h2>Générateur de mots de passe à usage unique basé sur TOTP (RFC 6238)</h2>
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Web Interface](#web-interface)
 
@@ -20,7 +20,7 @@
 
 ## 📋 Table des matières
 
-- [Qu'est-ce que HOTP ?](#quest-ce-que-hotp-)
+- [Qu'est-ce que TOTP ?](#quest-ce-que-totp-)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -31,9 +31,9 @@
 
 ---
 
-## Qu'est-ce que HOTP ?
+## Qu'est-ce que TOTP ?
 
-**HOTP** (HMAC-Based One-Time Password) est un algorithme standardisé ([RFC 4226](https://tools.ietf.org/html/rfc4226)) de génération de mots de passe à usage unique basé sur un compteur. Il utilise **HMAC-SHA1** pour créer des codes temporaires à 6 chiffres.
+**TOTP** (Time-Based One-Time Password) est un algorithme standardisé ([RFC 6238](https://tools.ietf.org/html/rfc6238)) de génération de mots de passe à usage unique basé sur le temps. Il utilise **HMAC-SHA1** pour créer des codes temporaires à 6 chiffres.
 
 ### Principe de fonctionnement
 
@@ -44,13 +44,13 @@
        ▲                  ▲                   │
        │                  │                   ▼
 ┌─────────────┐          │           ┌──────────────┐
-│  Counter    │──────────┘           │  6-digit OTP │
+│  Time Step  │──────────┘           │  6-digit OTP │
 └─────────────┘                      └──────────────┘
 ```
 
 1. **Clé secrète** : Une clé de 64 caractères hexadécimaux (256 bits)
-2. **Compteur** : Un nombre qui s'incrémente à chaque génération
-3. **HMAC-SHA1** : Hash cryptographique de la clé + compteur
+2. **Pas de temps** : Un intervalle de temps (généralement 30 secondes)
+3. **HMAC-SHA1** : Hash cryptographique de la clé + pas de temps
 4. **Dynamic Truncation** : Extraction de 4 octets depuis l'offset dynamique
 5. **Modulo 1000000** : Génère un code à 6 chiffres (000000 - 999999)
 
@@ -61,8 +61,7 @@
 - ✅ **CLI Mode** : Génération de clés et codes HOTP en ligne de commande
 - ✅ **Web Interface** : Interface web moderne et animée
 - ✅ **QR Code Generation** : Génération automatique de QR codes compatibles avec Google Authenticator
-- ✅ **Auto-increment Counter** : Compteur auto-incrémenté à chaque génération
-- ✅ **RFC 4226 Compliant** : Implémentation conforme au standard HOTP
+- ✅ **RFC 6238 Compliant** : Implémentation conforme au standard TOTP
 
 ---
 

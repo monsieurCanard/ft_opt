@@ -8,6 +8,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+
 WORKDIR /app/srcs
+
+COPY ft_opt.key .
+
+EXPOSE 5000
 
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
