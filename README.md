@@ -117,10 +117,8 @@ python3 srcs/prog.py -k ft_opt.key
 ```
 Generated HMAC-SHA1: f053922442311213163d796cfa1de9d3bcd7444b
 Temporary Password: 027898
-New Counter Value: 1
 ```
 
-Le compteur s'incrémente automatiquement après chaque génération.
 
 #### 3. Générer un QR Code
 
@@ -183,7 +181,7 @@ ft_opt/
 
 ```python
 # 1. Générer HMAC-SHA1
-HMAC = HMAC-SHA1(secret_key, counter)
+HMAC = HMAC-SHA1(secret_key, time)
 
 # 2. Dynamic Truncation
 offset = HMAC[19] & 0x0F
@@ -197,7 +195,6 @@ code = (int(truncated) & 0x7FFFFFFF) % 1_000_000
 
 ```
 <64_caracteres_hexadecimaux>
-<compteur>
 ```
 
 **Exemple :**
@@ -209,7 +206,7 @@ code = (int(truncated) & 0x7FFFFFFF) % 1_000_000
 ### URI Format pour QR Code
 
 ```
-otpauth://hotp/ft_opt?secret=<base32_key>&counter=<N>&algorithm=SHA1&digits=6
+otpauth://totp/ft_opt?secret=<base32_key>&time=<N>&algorithm=SHA1&digits=6
 ```
 
 ---
@@ -225,7 +222,5 @@ otpauth://hotp/ft_opt?secret=<base32_key>&counter=<N>&algorithm=SHA1&digits=6
  ---
 <div align="center" style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 20px;">
 • Fait avec ❤️ par monsieurCanard •
-⭐ N'oubliez pas de star le projet si vous l'aimez ! ⭐
-
 </div>
 
