@@ -1,3 +1,4 @@
+import os
 import time
 from parser import init_parser
 import hashlib
@@ -50,13 +51,13 @@ def generate_totp(key_file):
     return f"{bin_code:06d}"
 
 
-def generate_qrcode():
+def generate_qrcode(key_file):
     try:
-        with open("ft_opt.key", "r") as file:
+        with open(key_file, "r") as file:
             key_hex = file.readline().strip()
             key_bytes = bytes.fromhex(key_hex)
     except Exception as e:
-        print(f"error: could not read ft_opt.key: {e}")
+        print(f"error: could not read {key_file}: {e}")
         return
 
     period = 30
@@ -68,8 +69,10 @@ def generate_qrcode():
 
     try:
         img = qrcode.make(otp_uri)
-        img.save("static/qrcode.png")
-        print("QR Code generated and saved as qrcode.png")
+        script_path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.abspath(os.path.join(script_path, "static", "qrcode.png"))
+        img.save(path)
+        print("QR Code generated and saved as static/qrcode.png")
     except Exception as e:
         print(f"Error generating QR Code: {e}")
 
@@ -82,7 +85,7 @@ def main():
         save_key_from_file(args.g)
     if args.k:
         generate_totp(args.k)
-        generate_qrcode()
+        generate_qrcode(args.k)
 
 
 if __name__ == "__main__":
