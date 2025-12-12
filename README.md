@@ -138,10 +138,16 @@ python srcs/prog.py -k ft_opt.key
 #### Lancer le serveur Flask
 
 ```bash
-python srcs/app.py
+docker build -t ft_opt .
+docker run -d -p 5000:5000 ft_opt
 ```
+Vous avez plus que a vous rendre sur votre navigateur à l'adresse : `http://localhost:5000`
 
 Accédez à l'interface web : **https://code.duckiverse.com**
+
+## Aperçu de l'interface web
+
+<img width="662" height="1156" alt="Image" src="https://github.com/user-attachments/assets/ed1e0072-e4a1-4e1e-a821-8f0c266ab7bc" />
 
 #### Fonctionnalités
 
