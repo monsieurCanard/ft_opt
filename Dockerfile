@@ -11,7 +11,7 @@ COPY . .
 
 WORKDIR /app/srcs
 
-COPY ft_opt.key .
+COPY ft_otp.key .
 
 EXPOSE 5000
 

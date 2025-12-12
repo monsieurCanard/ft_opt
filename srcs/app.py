@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    one_time_code = generate_totp("ft_opt.key")
-    generate_qrcode()
+    one_time_code = generate_totp("ft_otp.key")
+    generate_qrcode("ft_otp.key")
     remaining_time = 30 - int(time.time() % 30)
     return render_template(
         "index.html",
@@ -22,8 +22,8 @@ def index():
 
 @app.route("/generate")
 def generate():
-    one_time_code = generate_totp("ft_opt.key")
-    generate_qrcode()
+    one_time_code = generate_totp("ft_otp.key")
+    generate_qrcode("ft_otp.key")
     remaining_time = 30 - int(time.time() % 30)
     return render_template(
         "index.html",
@@ -44,16 +44,16 @@ def generate_key():
     remaining_time = None
 
     if key_input:
-        with open("ft_opt.key", "w") as file:
+        with open("ft_otp.key", "w") as file:
             file.write(key_input)
 
-        if save_key_from_file("ft_opt.key"):
+        if save_key_from_file("ft_otp.key"):
             success = True
             message = "Key successfully saved and encrypted."
 
             # Generate OTP and QR Code immediately
-            hotp_code = generate_totp("ft_opt.key")
-            generate_qrcode()
+            hotp_code = generate_totp("ft_otp.key")
+            generate_qrcode("ft_otp.key")
             remaining_time = 30 - int(time.time() % 30)
             qrcode_exists = True
         else:

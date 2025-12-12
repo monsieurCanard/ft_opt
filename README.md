@@ -80,7 +80,7 @@ git clone https://github.com/monsieurCanard/ft_opt.git
 cd ft_opt
 
 # Créer un environnement virtuel (recommandé)
-python3 -m venv .venv
+python -m venv .venv
 source .venv/bin/activate  # Linux/Mac
 # .venv\Scripts\activate   # Windows
 
@@ -97,7 +97,7 @@ pip install -r requirements.txt
 #### 1. Générer et sauvegarder une clé
 
 ```bash
-python3 srcs/prog.py -g key.txt
+python srcs/prog.py -g key.txt
 ```
 
 **Exemple de fichier `key.txt` :**
@@ -110,7 +110,7 @@ python3 srcs/prog.py -g key.txt
 #### 2. Générer un code HOTP
 
 ```bash
-python3 srcs/prog.py -k ft_opt.key
+python srcs/prog.py -k ft_opt.key
 ```
 
 **Output :**
@@ -119,11 +119,12 @@ Generated HMAC-SHA1: f053922442311213163d796cfa1de9d3bcd7444b
 Temporary Password: 027898
 ```
 
+Le compteur s'incrémente automatiquement après chaque génération.
 
 #### 3. Générer un QR Code
 
 ```bash
-python3 srcs/prog.py -k ft_opt.key
+python srcs/prog.py -k ft_opt.key
 ```
 
 ✅ **Résultat** : Génère un QR code dans `srcs/static/qrcode.png` compatible avec :
@@ -137,7 +138,7 @@ python3 srcs/prog.py -k ft_opt.key
 #### Lancer le serveur Flask
 
 ```bash
-python3 srcs/app.py
+python srcs/app.py
 ```
 
 Accédez à l'interface web : **https://code.duckiverse.com**
@@ -145,7 +146,7 @@ Accédez à l'interface web : **https://code.duckiverse.com**
 #### Fonctionnalités
 
 1. **Generate New Key** : Entrez une clé hexadécimale de 64 caractères
-2. **Generate HOTP & QR Code** : Génère un code OTP et un QR code scannable
+2. **Generate TOTP & QR Code** : Génère un code OTP et un QR code scannable
 3. **Modern UI** : Interface animée avec transitions fluides
 
 <!-- Screenshot placeholder -->
@@ -160,7 +161,7 @@ Accédez à l'interface web : **https://code.duckiverse.com**
 ft_opt/
 ├── srcs/
 │   ├── app.py              # Flask web server
-│   ├── prog.py             # Core HOTP logic
+│   ├── prog.py             # Core TOTP logic
 │   ├── parser.py           # CLI argument parser
 │   ├── static/             # Static assets
 │   │   ├── qrcode.png      # Generated QR codes
@@ -177,11 +178,11 @@ ft_opt/
 
 ## Algorithme
 
-### Implémentation HOTP (RFC 4226)
+### Implémentation TOTP (RFC 4226)
 
 ```python
 # 1. Générer HMAC-SHA1
-HMAC = HMAC-SHA1(secret_key, time)
+HMAC = HMAC-SHA1(secret_key, counter)
 
 # 2. Dynamic Truncation
 offset = HMAC[19] & 0x0F
@@ -200,13 +201,16 @@ code = (int(truncated) & 0x7FFFFFFF) % 1_000_000
 **Exemple :**
 ```
 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
-0
+```
+
+```
+time = floor(current_unix_time / 30)
 ```
 
 ### URI Format pour QR Code
 
 ```
-otpauth://totp/ft_opt?secret=<base32_key>&time=<N>&algorithm=SHA1&digits=6
+otpauth://totp/ft_opt?secret=<base32_key>&time=<time>&algorithm=SHA1&digits=6
 ```
 
 ---
@@ -220,7 +224,6 @@ otpauth://totp/ft_opt?secret=<base32_key>&time=<N>&algorithm=SHA1&digits=6
 - **HMAC-SHA1** : Cryptographic hashing
 - **TailwindCSS** : Modern styling
  ---
-<div align="center" style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 20px;">
-• Fait avec ❤️ par monsieurCanard •
+
 </div>
 

@@ -7,6 +7,12 @@ import qrcode
 import base64
 
 
+def verify_key(key):
+    if len(key) != 64 or not all(c in "0123456789abcdefABCDEF" for c in key):
+        return False
+    return True
+
+
 def save_key_from_file(file_path):
     try:
         with open(file_path, "r") as file:
@@ -15,14 +21,16 @@ def save_key_from_file(file_path):
         print(f"error: could not read file: {e}")
         return False
 
-    if len(key) != 64 or not all(c in "0123456789abcdefABCDEF" for c in key):
-        print("error: key must be 64 hexadecimal characters.")
+    if not verify_key(key):
+        print("error: key must be a 64 hexadecimal characters.")
         return False
 
     try:
-        with open("ft_opt.key", "w") as key_file:
+        script_path = os.path.dirname(os.path.abspath(__file__))
+        path = os.path.join(script_path, "..", "ft_otp.key")
+        with open(path, "w") as key_file:
             key_file.write(key)
-            print("Key saved successfully.")
+            print("Key was successfully saved in ft_otp.key")
             return True
     except Exception as e:
         print(f"error: could not write to ft_opt.key: {e}")
@@ -30,14 +38,20 @@ def save_key_from_file(file_path):
 
 
 def generate_totp(key_file):
+    if key_file != "ft_otp.key":
+        print("error: key file must be named ft_otp.key")
+        return None
+
     try:
         with open(key_file, "r") as file:
             key = file.readline().strip()
             key_bytes = bytes.fromhex(key)
-
+            if not verify_key(key):
+                print("error: key must be a 64 hexadecimal characters.")
+                return None
     except Exception as e:
         print(f"error: could not read key file: {e}")
-        return
+        return None
 
     period = 30
     time_bytes = int(time.time() // period).to_bytes(8, "big")
@@ -84,8 +98,9 @@ def main():
     if args.g:
         save_key_from_file(args.g)
     if args.k:
-        generate_totp(args.k)
-        generate_qrcode(args.k)
+        ret = generate_totp(args.k)
+        if ret:
+            generate_qrcode(args.k)
 
 
 if __name__ == "__main__":
