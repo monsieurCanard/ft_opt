@@ -143,7 +143,7 @@ docker run -d -p 5000:5000 ft_opt
 ```
 Vous avez plus que a vous rendre sur votre navigateur à l'adresse : `http://localhost:5000`
 
-Accédez à l'interface web : **https://code.duckiverse.com**
+Accédez à l'interface web : **https://topt.duckiverse.com**
 
 ## Aperçu de l'interface web
 
