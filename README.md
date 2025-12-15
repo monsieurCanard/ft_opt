@@ -1,5 +1,5 @@
 <div align="center">
-<img width="1460" height="337" alt="Image" src="https://github.com/user-attachments/assets/a72168c2-cdf1-4af8-89cb-20cc79eeaa05" />
+<img width="1460" height="337" alt="Image" src="https://github.com/user-attachments/assets/d2b65fe5-39c6-498c-b68f-d2e36cce17ca" />
 
 <h1> 🔐 ft_opt - TOTP Generator </h1>
 </div>
